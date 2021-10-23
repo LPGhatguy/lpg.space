@@ -1,5 +1,3 @@
-import React from "react";
-
 import style from "./Footer.css";
 
 import twitter from "../../resources/iconmonstr-twitter-1.svg";

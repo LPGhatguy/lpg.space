@@ -9,6 +9,8 @@
         "node": "14.15"
       }
     }],
-    "@babel/preset-react"
+    ["@babel/preset-react", {
+      "runtime": "automatic"
+    }]
   ]
 }

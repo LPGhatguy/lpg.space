@@ -1,5 +1,3 @@
-import React from "react";
-
 import style from "./Splash.css";
 
 export default function Splash({ title }) {

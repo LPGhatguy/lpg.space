@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 import PageBody from "../components/PageBody";
@@ -29,7 +28,7 @@ export default function Home() {
 		));
 
 	return (
-		<React.Fragment>
+		<>
 			<Splash title="Hello, I'm Lucien! " />
 			<PageBody>
 				<Content />
@@ -39,6 +38,6 @@ export default function Home() {
 			<PageBody>
 				{ postList }
 			</PageBody>
-		</React.Fragment>
+		</>
 	);
 }
