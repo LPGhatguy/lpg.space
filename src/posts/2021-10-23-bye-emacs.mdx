@@ -1,0 +1,48 @@
+export const metadata = {
+	title: "Bye, Emacs!",
+};
+
+I [switched to Doom Emacs back in January](/post/2021-01-08-wow-emacs). I was excited to see how extensible Emacs is and I can see why people have stuck with the editor for so long. I even tried to get some of my friends to come give it a shot.
+
+The honeymoon is over. I gave up on Emacs.
+
+A lot of my experience mirrors [this blog post from Tristan Hume][thume-post]. I found it while looking for sympathy during the peak of my frustration with Emacs. It really helped validate my feelings during a time when I was blaming myself for Emacs' problems.
+
+## The Good
+
+Emacs, especially Doom, has some awesome stuff going for it:
+
+- Evil, by far the best Vim emulation in any non-Vim editor
+- Spacemacs-style keybinds are genius
+- A declarative package manager, `straight.el`
+- Discoverability of functions is very good
+- Incredibly easy to extend the editor
+
+## The Bad
+
+Over time, I ran into more and more issues.
+
+Startup time on my fast desktop was over 5 seconds. Opening a Rust file would freeze the editor for 3 seconds. Even the input latency on buffers with any features enabled was unbearable. I am told this is unique to Emacs on Windows.
+
+I spent a lot of my time with Emacs figuring out why stuff was broken. Why did Treemacs get into a busted state so frequently? Why would some stuff replicate across persp-mode workspaces? Why can I sometimes get my cursor into the LSP suggestions window and edit it? Doom was supposed to be a curated set of packages and patches to make them all work together, and yet they often did not.
+
+Packages monkeypatch functions that get monkeypatched by other packages that invoke some hooks in an order that sometimes changes. I ended up reading a lot of Emacs Lisp trying to figure out why something small like line numbers refused to work.
+
+Doom Emacs has a cool upgrade process and uses `straight.el` for its packages. Over 8 months, I tried to upgrade Doom four times and did not succeed once. Each time, I would hit a new unique internal error and restart my Doom install from scratch.
+
+[Eryn] would frequently poke fun at how my editor was janky and broken.
+
+By the end of my time with Emacs, I was depressed. I thought I had found the end-all editor, the last one I would ever use, and it would be infinitely customizable! In reality, it was slow, often broken, and it made me not want to program anymore.
+
+## The Now
+I bought a Sublime Text 4 upgrade and switched back to my old ways, mostly.
+
+It's painfully obvious how much faster Sublime Text is than Emacs. The editor opens instantly. Files open instantly. I can type and the editor usually doesn't freeze.
+
+I learned the fundamentals of the Sublime Text plugin API and wrote a couple plugins. It turns out that's pretty easy. I even changed some of my bindings to be more Spacemacs/Doom-like.
+
+Programming is fun again and I spend zero time waiting for a frozen editor or fiddling with monkeypatching a package's obscurely-named functions.
+
+I'm happy again.
+
+[thume-post]: https://thume.ca/2017/03/04/my-text-editor-journey-vim-spacemacs-atom-and-sublime-text/
