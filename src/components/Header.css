@@ -1,8 +1,10 @@
 .Header {
 	flex: 0 0;
-	background-color: var(--color-bg-1);
+	background-color: var(--color-site-header-bg);
+	color: var(--color-site-header-fg);
+	font-weight: 200;
 	font-size: 1.2rem;
-	margin-bottom: 1rem;
+	margin-bottom: 2rem;
 }
 
 .HeaderInner {
@@ -12,11 +14,12 @@
 
 	display: flex;
 	flex-wrap: wrap;
+	/*justify-content: center;*/
 	align-items: baseline;
 }
 
 .Title {
-	padding-right: 2rem;
+	padding: 1rem 1rem 1rem 0;
 	font-size: 1.6rem;
 }
 

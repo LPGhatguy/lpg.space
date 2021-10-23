@@ -1,26 +1,33 @@
 .Footer {
 	flex: 0 0;
-	background-color: var(--color-bg-1);
+	background-color: var(--color-site-footer-bg);
+	color: var(--color-site-footer-fg);
+	margin-top: 2rem;
 }
 
 .FooterInner {
 	max-width: var(--site-width);
-	padding: 1rem var(--site-padding);
+	padding: 2rem var(--site-padding);
 	margin: 0 auto;
 
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-around;
+	justify-content: center;
 }
 
 .Item {
 	display: flex;
 	align-items: center;
 	padding: 1rem;
-	color: var(--color-highlight-1);
 }
 
 .Icon {
-	height: 1em;
+	height: 2em;
 	margin-right: 0.25em;
+	filter: invert(0.9);
+	transition: transform 150ms ease-in-out;
+}
+
+.Icon:hover {
+	transform: scale(1.1);
 }

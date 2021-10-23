@@ -8,6 +8,7 @@ import allBlogPosts from "../allBlogPosts";
 import dateToString from "../dateToString";
 
 import style from "./Home.css";
+import Content from "./AboutContent.mdx";
 
 function ArticleLink({ slug, title, date }) {
 	return (
@@ -29,8 +30,12 @@ export default function Home() {
 
 	return (
 		<React.Fragment>
-			<Splash title="Latest Blog Posts" />
+			<Splash title="Hello, I'm Lucien! " />
+			<PageBody>
+				<Content />
+			</PageBody>
 
+			<Splash title="Latest Blog Posts" />
 			<PageBody>
 				{ postList }
 			</PageBody>

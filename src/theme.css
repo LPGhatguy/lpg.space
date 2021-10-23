@@ -5,10 +5,18 @@
 	--font-weight-1: 300;
 	--font-weight-2: 400;
 
-	--color-site-bg: #eee;
-	--color-site-text: rgba(0, 0, 0, 0.9);
-	--color-bg-1: #ddd;
-	--color-bg-2: #ccc;
+	--color-text-dark: #1c1e21;
+	--color-text-light: #f6f8fc;
+
+	--color-site-bg: #fff;
+	--color-site-fg: var(--color-text-dark);
+
+	--color-site-header-bg: #c43b3d;
+	--color-site-header-fg: var(--color-text-light);
+
+	--color-site-footer-bg: #883839;
+	--color-site-footer-fg: var(--color-text-light);
+
 	--color-highlight-1: #e13835;
 }
 
@@ -19,9 +27,7 @@
 }
 
 :root {
-	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-		Ubuntu, Cantarell, Fira Sans, Droid Sans, Lato, Helvetica Neue,
-		sans-serif;
+	font-family: Poppins, sans-serif;
 	font-weight: 400;
 	font-kerning: normal;
 	font-size: 20px;
@@ -31,10 +37,9 @@
 
 body {
 	background-color: var(--color-site-bg);
-	color: var(--color-site-text);
+	color: var(--color-site-fg);
 }
 
 .SiteTitle {
-	font-size: 2rem;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+	font-size: 2.8rem;
 }

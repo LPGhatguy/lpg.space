@@ -12,8 +12,7 @@ export default function Header() {
 				</Link>
 
 				<nav className={ style.Nav }>
-					<NavLink activeClassName={ style.ActiveNavLink } exact to="/">home</NavLink>
-					<NavLink activeClassName={ style.ActiveNavLink } to="/about/">about</NavLink>
+					{ /* lol */ }
 				</nav>
 			</div>
 		</header>
