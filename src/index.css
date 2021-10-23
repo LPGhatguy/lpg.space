@@ -21,6 +21,10 @@ body {
 	flex-direction: column;
 }
 
+li {
+	list-style: none;
+}
+
 :global #app {
 	flex: 1 0;
 	display: flex;
