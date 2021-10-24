@@ -3,7 +3,7 @@
 /dist
 
 # Stuff used by the generator tool
-/.cache
+/.parcel-cache
 
 # npm modules
 /node_modules
