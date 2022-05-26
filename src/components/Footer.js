@@ -3,6 +3,7 @@ import style from "./Footer.css";
 import twitter from "../../resources/iconmonstr-twitter-1.svg";
 import github from "../../resources/iconmonstr-github-1.svg";
 import linkedin from "../../resources/iconmonstr-linkedin-3.svg";
+import patreon from "../../resources/patreon.svg";
 
 const Item = ({ url, title, icon, children }) => (
 	<span className={ style.Item }>
@@ -21,6 +22,10 @@ export default function Footer() {
 				<Item url="https://github.com/LPGhatguy"
 					icon={ github }
 					title="LPGhatguy on GitHub" />
+
+				<Item url="https://www.patreon.com/lpghatguy"
+					icon={ patreon }
+					title="LPGhatguy on Patreon" />
 
 				<Item
 					url="https://www.linkedin.com/in/lucien-greathouse-539bb73b"
