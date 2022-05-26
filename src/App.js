@@ -11,6 +11,9 @@ import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
 import allBlogPosts from "./allBlogPosts";
 
+import "./theme.css";
+import "./index.css";
+
 export default function App() {
 	const blogRoutes = allBlogPosts.map(({ slug, title, date, Body }) => {
 		return (

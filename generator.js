@@ -3,7 +3,7 @@
 // This script cannot be run directly by Node.js, but can be built via Parcel
 // and then run.
 
-import Parcel from "parcel-bundler";
+import { Parcel } from "@parcel/core";
 import path from "path";
 import fs from "fs/promises";
 import rimraf from "rimraf";
@@ -128,14 +128,22 @@ async function build({ entry, outDir, initialRoutes, renderPage }) {
     console.log("Generating template with Parcel...");
 
 	const bundler = new Parcel([entry], {
-		publicUrl,
-		watch: false,
-		minify: true,
-		autoInstall: false,
-        logLevel: 2,
+		mode: "production",
+		defaultTargetOptions: {
+			publicUrl,
+			distDir: outDir,
+		},
 	});
 
-	await bundler.bundle();
+	try {
+		let {bundleGraph, buildTime} = await bundler.run();
+		let bundles = bundleGraph.getBundles();
+		console.log(`✨ Built ${bundles.length} bundles in ${buildTime}ms!`);
+		console.log(bundles);
+	} catch (err) {
+		console.error(err.diagnostics);
+		throw new Error("Failed to build Parcel bundle");
+	}
 
 	// This should be `entry`, but processed by Parcel.
 	const template = await fs.readFile(path.join(outDir, path.basename(entry)));
