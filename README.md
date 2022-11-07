@@ -1,4 +1,4 @@
-# [v80.lpg.space](https://v80.lpg.space)
+# [lpg.space](https://lpg.space)
 Working on a new website.
 
 ## Usage
