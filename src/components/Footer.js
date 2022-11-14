@@ -4,10 +4,11 @@ import twitter from "../../resources/iconmonstr-twitter-1.svg";
 import github from "../../resources/iconmonstr-github-1.svg";
 import linkedin from "../../resources/iconmonstr-linkedin-3.svg";
 import patreon from "../../resources/patreon.svg";
+import mastodon from "../../resources/mastodon.svg";
 
-const Item = ({ url, title, icon, children }) => (
+const Item = ({ url, title, icon, children, rel }) => (
 	<span className={ style.Item }>
-		<a title={ title } href={ url }><img className={ style.Icon } src={ icon } /></a>
+		<a title={ title } href={ url } rel={ rel }><img className={ style.Icon } src={ icon } /></a>
 	</span>
 );
 
@@ -15,6 +16,10 @@ export default function Footer() {
 	return (
 		<footer className={ style.Footer }>
 			<div className={ style.FooterInner }>
+				<Item url="https://mastodon.gamedev.place/web/@lpg"
+					icon={ mastodon }
+					title="@lpg on mastodon.gamedev.place" />
+
 				<Item url="https://twitter.com/LPGhatguy"
 					icon={ twitter }
 					title="LPGhatguy on Twitter" />
