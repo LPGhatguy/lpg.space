@@ -16,7 +16,7 @@ export default function Footer() {
 	return (
 		<footer className={ style.Footer }>
 			<div className={ style.FooterInner }>
-				<Item url="https://mastodon.gamedev.place/web/@lpg"
+				<Item url="https://mastodon.gamedev.place/@lpg"
 					icon={ mastodon }
 					rel="me"
 					title="@lpg on mastodon.gamedev.place" />
