@@ -1,0 +1,48 @@
+<!DOCTYPE html><html><head><meta data-react-helmet="true" charset="utf-8"><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta data-react-helmet="true" name="description" content="Website for Lucien Greathouse, also known as lpg."><title data-react-helmet="true">Solving Dishonored 2's "Jindosh Riddle" with Prolog | lpg.space</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/src.6573b815.css"></head><body> <div id="app"><header class="_Header_74ad2"><div class="_HeaderInner_74ad2"><a class="_Title_74ad2" href="/">lpg</a><nav class="_Nav_74ad2"></nav></div></header><div class="_PageBody_da423"><div class="_PageBodyInner_da423"><article class="_Article_6f812"><h1 class="_Title_6f812">Solving Dishonored 2's "Jindosh Riddle" with Prolog</h1><div class="_Date_6f812">2023-10-09</div><div class="_wrapper_007f8"><p class="_p_007f8">In Dishonored 2, there is a mission where the game presents the player with a randomly generated permutation of a puzzle involving five ladies at a dinner party. Solving the puzzle with only the given information is possible but very difficult. The player can interact with one of the factions in the mission to gain a hint that makes the puzzle much easier, though there's a special achivement for solving the puzzle without that information.</p><p class="_p_007f8">The puzzle is a variant of the <a class="_a_007f8" href="https://en.wikipedia.org/wiki/Zebra_Puzzle">Zebra Puzzle</a>, a constraint satisfaction problem that lends itself well to logic programming languages.</p><p class="_p_007f8">Instead of solving the puzzle by hand, I decided to learn how to solve this category of puzzle using Prolog!</p><p class="_p_007f8">Here's the program I ended up with, as well as the contents of the puzzle from my playthrough of the game:</p><pre class="_pre_007f8"><code class="language-prolog">#!/usr/bin/env swipl
+
+:- initialization(main, main).
+
+exclusive([A|As], List) :-
+  select(A, List, Remaining),
+  exclusive(As, Remaining).
+exclusive([], _).
+
+left_of(Left, Right, List) :- append(_, [Left,Right|_], List).
+next_to(A, B, List) :- left_of(A, B, List); left_of(B, A, List).
+
+party(Ladies) :- % name, color, item, origin, drink
+  Ladies = [h(natsiou,_,_,_,_), h(_,blue,_,_,_), h(_,_,_,_,rum), _, _],
+  exclusive([
+    h(marcolla,red,_,_,_),
+    h(_,green,_,_,wine),
+    h(_,white,_,dunwall,_)
+  ], Ladies),
+  exclusive([
+    h(finch,_,snuff_tin,_,_),
+    h(_,_,war_medal,dabovka,_)
+  ], Ladies),
+  exclusive([
+    h(winslow,_,_,_,whiskey),
+    h(_,_,_,fraeport,absinthe),
+    h(contee,_,_,karnaca,_)
+  ], Ladies),
+  exclusive([
+    h(_,_,diamond,_,_),
+    h(_,_,bird_pendant,_,_),
+    h(_,_,war_medal,_,_),
+    h(_,_,ring,_,_),
+    h(_,_,snuff_tin,_,_)
+  ], Ladies),
+  left_of(h(_,green,_,_,_), h(_,purple,_,_,_), Ladies),
+  next_to(h(_,_,diamond,_,_), h(_,_,_,dunwall,_), Ladies),
+  next_to(h(_,_,ring,_,_), h(_,_,_,baleton,_), Ladies),
+  next_to(h(_,_,_,baleton,_), h(_,_,_,_,beer), Ladies).
+
+report(lady(Name, Color, Item, Origin, Drink)) :-
+  format('~w  ~w  ~w  ~w  ~w~n', [Name, Color, Item, Origin, Drink]).
+
+main(_Argv) :-
+  party(Ladies),
+  maplist(report, Ladies),
+  nl.
+</code></pre></div><div></div></article></div></div><footer class="_Footer_c92f1"><div class="_FooterInner_c92f1"><span class="_Item_c92f1"><a title="@lpg on mastodon.gamedev.place" href="https://mastodon.gamedev.place/@lpg" rel="me"><img class="_Icon_c92f1" src="/mastodon.f609b4bf.svg"></a></span><span class="_Item_c92f1"><a title="LPGhatguy on Twitter" href="https://twitter.com/LPGhatguy"><img class="_Icon_c92f1" src="/iconmonstr-twitter-1.4b3cbcb7.svg"></a></span><span class="_Item_c92f1"><a title="LPGhatguy on GitHub" href="https://github.com/LPGhatguy"><img class="_Icon_c92f1" src="/iconmonstr-github-1.54a762db.svg"></a></span><span class="_Item_c92f1"><a title="LPGhatguy on Patreon" href="https://www.patreon.com/lpghatguy"><img class="_Icon_c92f1" src="/patreon.a1e619b3.svg"></a></span><span class="_Item_c92f1"><a title="Lucien Greathouse on LinkedIn" href="https://www.linkedin.com/in/lucien-greathouse-539bb73b"><img class="_Icon_c92f1" src="/iconmonstr-linkedin-3.a124480b.svg"></a></span></div></footer></div> <script src="/src.c0dc132e.js"></script> </body></html>
