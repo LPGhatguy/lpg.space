@@ -1,0 +1,61 @@
+export const metadata = {
+	title: "Solving Dishonored 2's \"Jindosh Riddle\" with Prolog",
+};
+
+In Dishonored 2, there is a mission where the game presents the player with a randomly generated permutation of a puzzle involving five ladies at a dinner party. Solving the puzzle with only the given information is possible but very difficult. The player can interact with one of the factions in the mission to gain a hint that makes the puzzle much easier, though there's a special achivement for solving the puzzle without that information.
+
+The puzzle is a variant of the [Zebra Puzzle](https://en.wikipedia.org/wiki/Zebra_Puzzle), a constraint satisfaction problem that lends itself well to logic programming languages.
+
+Instead of solving the puzzle by hand, I decided to learn how to solve this category of puzzle using Prolog!
+
+Here's the program I ended up with, as well as the contents of the puzzle from my playthrough of the game:
+
+```prolog
+#!/usr/bin/env swipl
+
+:- initialization(main, main).
+
+exclusive([A|As], List) :-
+  select(A, List, Remaining),
+  exclusive(As, Remaining).
+exclusive([], _).
+
+left_of(Left, Right, List) :- append(_, [Left,Right|_], List).
+next_to(A, B, List) :- left_of(A, B, List); left_of(B, A, List).
+
+party(Ladies) :- % name, color, item, origin, drink
+  Ladies = [h(natsiou,_,_,_,_), h(_,blue,_,_,_), h(_,_,_,_,rum), _, _],
+  exclusive([
+    h(marcolla,red,_,_,_),
+    h(_,green,_,_,wine),
+    h(_,white,_,dunwall,_)
+  ], Ladies),
+  exclusive([
+    h(finch,_,snuff_tin,_,_),
+    h(_,_,war_medal,dabovka,_)
+  ], Ladies),
+  exclusive([
+    h(winslow,_,_,_,whiskey),
+    h(_,_,_,fraeport,absinthe),
+    h(contee,_,_,karnaca,_)
+  ], Ladies),
+  exclusive([
+    h(_,_,diamond,_,_),
+    h(_,_,bird_pendant,_,_),
+    h(_,_,war_medal,_,_),
+    h(_,_,ring,_,_),
+    h(_,_,snuff_tin,_,_)
+  ], Ladies),
+  left_of(h(_,green,_,_,_), h(_,purple,_,_,_), Ladies),
+  next_to(h(_,_,diamond,_,_), h(_,_,_,dunwall,_), Ladies),
+  next_to(h(_,_,ring,_,_), h(_,_,_,baleton,_), Ladies),
+  next_to(h(_,_,_,baleton,_), h(_,_,_,_,beer), Ladies).
+
+report(lady(Name, Color, Item, Origin, Drink)) :-
+  format('~w  ~w  ~w  ~w  ~w~n', [Name, Color, Item, Origin, Drink]).
+
+main(_Argv) :-
+  party(Ladies),
+  maplist(report, Ladies),
+  nl.
+```
