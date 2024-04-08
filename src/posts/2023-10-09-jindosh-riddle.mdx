@@ -51,7 +51,7 @@ party(Ladies) :- % name, color, item, origin, drink
   next_to(h(_,_,ring,_,_), h(_,_,_,baleton,_), Ladies),
   next_to(h(_,_,_,baleton,_), h(_,_,_,_,beer), Ladies).
 
-report(lady(Name, Color, Item, Origin, Drink)) :-
+report(h(Name, Color, Item, Origin, Drink)) :-
   format('~w  ~w  ~w  ~w  ~w~n', [Name, Color, Item, Origin, Drink]).
 
 main(_Argv) :-
